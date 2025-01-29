@@ -2,12 +2,13 @@ package com.burakguclu.service;
 
 import java.util.List;
 
-import com.burakguclu.model.Employee;
+import com.burakguclu.dto.DtoEmployee;
+import com.burakguclu.dto.DtoEmployeeIU;
 
 public interface IEmployeeService {
-	public Employee saveEmployee(Employee employee);
-	public List<Employee> getAllEmployees();
-	public Employee getEmployeeByID(Integer id);
+	public DtoEmployee saveEmployee(DtoEmployeeIU dtoEmployeeIU);
+	public List<DtoEmployee> getAllEmployees();
+	public DtoEmployee getEmployeeByID(Integer id);
 	public void deleteEmployee(Integer id);
-	public Employee updateEmployee(Integer id, Employee updatedEmployee);
+	public DtoEmployee updateEmployee(Integer id, DtoEmployeeIU dtoEmployeeIU);
 }

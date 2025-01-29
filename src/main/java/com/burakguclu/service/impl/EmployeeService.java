@@ -1,10 +1,15 @@
 package com.burakguclu.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.burakguclu.dto.DtoEmployee;
+import com.burakguclu.dto.DtoEmployeeIU;
 import com.burakguclu.model.Employee;
 import com.burakguclu.repository.IEmployeeRepository;
 import com.burakguclu.service.IEmployeeService;
@@ -16,40 +21,67 @@ public class EmployeeService implements IEmployeeService {
 	private IEmployeeRepository employeeRepository;
 
 	@Override
-	public Employee saveEmployee(Employee employee) {
-		return employeeRepository.save(employee);
+	public DtoEmployee saveEmployee(DtoEmployeeIU dtoEmployeeIU) {
+		DtoEmployee response = new DtoEmployee();
+		
+		Employee employee = new Employee();
+		BeanUtils.copyProperties(dtoEmployeeIU, employee);
+		
+		Employee savedEmployee = employeeRepository.save(employee);
+		BeanUtils.copyProperties(savedEmployee, response);
+		
+		return response;
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
+	public List<DtoEmployee> getAllEmployees() {
+		List<DtoEmployee> response = new ArrayList<>();
+		
 		List<Employee> employeeList = employeeRepository.findAll();
-		return employeeList;
+		
+		for(Employee employee : employeeList) {
+			DtoEmployee tempDtoEmployee = new DtoEmployee();
+			BeanUtils.copyProperties(employee, tempDtoEmployee);
+			response.add(tempDtoEmployee);
+		}
+		
+		return response;
 	}
 
 	@Override
-	public Employee getEmployeeByID(Integer id) {
-		Optional<Employee> optinial = employeeRepository.findById(id);
-		if (optinial.isPresent())
-			return optinial.get();
+	public DtoEmployee getEmployeeByID(Integer id) {
+		DtoEmployee response = new DtoEmployee();
+		
+		Optional<Employee> optional = employeeRepository.findById(id);
+		if (optional.isPresent()) {
+			Employee tempEmployee = optional.get();
+			BeanUtils.copyProperties(tempEmployee, response);
+			return response;
+		}
 		return null;
 	}
 
 	@Override
 	public void deleteEmployee(Integer id) {
-		Employee tempEmployee = getEmployeeByID(id);
-		if (tempEmployee != null)
-			employeeRepository.delete(tempEmployee);
+		Optional<Employee> optional = employeeRepository.findById(id);
+		if (optional.isPresent())
+			employeeRepository.delete(optional.get());
 	}
 
 	@Override
-	public Employee updateEmployee(Integer id, Employee updatedEmployee) {
-		Employee tempEmployee = getEmployeeByID(id);
-		if (tempEmployee != null) {
-			tempEmployee.setFirstName(updatedEmployee.getFirstName());
-			tempEmployee.setLastName(updatedEmployee.getLastName());
-			tempEmployee.setBirthDate(updatedEmployee.getBirthDate());
+	public DtoEmployee updateEmployee(Integer id, DtoEmployeeIU dtoEmployeeIU) {
+		DtoEmployee response = new DtoEmployee();
+		
+		Optional<Employee> optional = employeeRepository.findById(id);
+		if(optional.isPresent()) {
+			Employee tempEmployee = optional.get();
+			tempEmployee.setFirstName(dtoEmployeeIU.getFirstName());
+			tempEmployee.setLastName(dtoEmployeeIU.getLastName());
+			tempEmployee.setBirthDate(dtoEmployeeIU.getBirthDate());
 
-			return employeeRepository.save(tempEmployee);
+			Employee updatedEmployee = employeeRepository.save(tempEmployee);
+			BeanUtils.copyProperties(updatedEmployee, response);
+			return response;
 		}
 		return null;
 	}

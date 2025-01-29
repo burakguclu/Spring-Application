@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.burakguclu.controller.IEmployeeController;
-import com.burakguclu.model.Employee;
+import com.burakguclu.dto.DtoEmployee;
+import com.burakguclu.dto.DtoEmployeeIU;
 import com.burakguclu.service.IEmployeeService;
-import com.burakguclu.service.impl.EmployeeService;
 
 @RestController
 @RequestMapping("/rest/api/employee")
@@ -26,19 +26,19 @@ public class EmployeeController implements IEmployeeController{
 	
 	@PostMapping(path = "/save")
 	@Override
-	public Employee saveEmployee(@RequestBody Employee employee) {
-		return employeeService.saveEmployee(employee);
+	public DtoEmployee saveEmployee(@RequestBody DtoEmployeeIU dtoEmployeeIU) {
+		return employeeService.saveEmployee(dtoEmployeeIU);
 	}
 
 	@GetMapping(path = "/list")
 	@Override
-	public List<Employee> getAllEmployees() {
+	public List<DtoEmployee> getAllEmployees() {
 		return employeeService.getAllEmployees();
 	}
 
 	@GetMapping(path = "/{id}")
 	@Override
-	public Employee getEmployeeByID(@PathVariable(name = "id") Integer id) {
+	public DtoEmployee getEmployeeByID(@PathVariable(name = "id") Integer id) {
 		return employeeService.getEmployeeByID(id);
 	}
 
@@ -50,8 +50,8 @@ public class EmployeeController implements IEmployeeController{
 
 	@PutMapping(path = "/update/{id}")
 	@Override
-	public Employee updateEmployee(@PathVariable(name = "id") Integer id, @RequestBody Employee updatedEmployee) {
-		return employeeService.updateEmployee(id, updatedEmployee);
+	public DtoEmployee updateEmployee(@PathVariable(name = "id") Integer id, @RequestBody DtoEmployeeIU dtoEmployeeIU) {
+		return employeeService.updateEmployee(id, dtoEmployeeIU);
 	}
 
 }
