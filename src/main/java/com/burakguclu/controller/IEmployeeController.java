@@ -8,4 +8,5 @@ public interface IEmployeeController {
 	public Employee saveEmployee(Employee employee);
 	public List<Employee> getAllEmployees();
 	public Employee getEmployeeByID(Integer id);
+	public void deleteEmployee(Integer id);
 }

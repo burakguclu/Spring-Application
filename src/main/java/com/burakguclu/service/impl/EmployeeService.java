@@ -34,4 +34,11 @@ public class EmployeeService implements IEmployeeService{
 		return null;
 	}
 
+	@Override
+	public void deleteEmployee(Integer id) {
+		Employee tempEmployee = getEmployeeByID(id);
+		if(tempEmployee != null)
+			employeeRepository.delete(tempEmployee);
+	}
+
 }
