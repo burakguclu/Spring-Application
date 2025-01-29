@@ -10,11 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DtoEmployeeIU {
-	
 	private String firstName;
-
 	private String lastName;
-	
 	private Date birthDate;
-	
 }

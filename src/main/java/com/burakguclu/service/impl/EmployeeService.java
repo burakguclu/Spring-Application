@@ -37,7 +37,7 @@ public class EmployeeService implements IEmployeeService {
 	public List<DtoEmployee> getAllEmployees() {
 		List<DtoEmployee> response = new ArrayList<>();
 		
-		List<Employee> employeeList = employeeRepository.findAll();
+		List<Employee> employeeList = employeeRepository.findAllEmployees();
 		
 		for(Employee employee : employeeList) {
 			DtoEmployee tempDtoEmployee = new DtoEmployee();
@@ -52,7 +52,7 @@ public class EmployeeService implements IEmployeeService {
 	public DtoEmployee getEmployeeByID(Integer id) {
 		DtoEmployee response = new DtoEmployee();
 		
-		Optional<Employee> optional = employeeRepository.findById(id);
+		Optional<Employee> optional = employeeRepository.findEmployeeByID(id);
 		if (optional.isPresent()) {
 			Employee tempEmployee = optional.get();
 			BeanUtils.copyProperties(tempEmployee, response);
