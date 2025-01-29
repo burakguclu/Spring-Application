@@ -1,6 +1,7 @@
 package com.burakguclu.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,12 @@ public class EmployeeService implements IEmployeeService{
 		return employeeList;
 	}
 
+	@Override
+	public Employee getEmployeeByID(Integer id) {
+		Optional<Employee> optinial = employeeRepository.findById(id);
+		if(optinial.isPresent())
+			return optinial.get();
+		return null;
+	}
 
 }
