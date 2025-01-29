@@ -1,18 +1,35 @@
 package com.burakguclu.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.sql.Date;
 
-@Getter
-@Setter
-@AllArgsConstructor
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "employee")
+@Data
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 public class Employee {
-	private String id;
-	private String firstname;
-	private String lastname;
+	
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column(name = "first_name", nullable = false, length = 50)
+	private String firstName;
+	
+	@Column(name = "last_name", nullable = false, length = 50)
+	private String lastName;
+	
+	@Column(name = "birth_date", nullable = true)
+	private Date birthDate;
 }
