@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "96de1109-18c0-4759-914b-6ea05fb3280e",
+		"name": "Employee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41630334"
+	},
+	"item": [
+		{
+			"name": "SaveEmployee",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Kutay\",\r\n    \"lastName\" : \"Alabora\",\r\n    \"birthDate\" : \"2002-04-19\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/api/employee/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"api",
+						"employee",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EmployeeList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/api/employee/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"api",
+						"employee",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EmployeeWithID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/api/employee/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"api",
+						"employee",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteEmployee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/api/employee/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"api",
+						"employee",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEmployee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Hakan\",\r\n    \"lastName\" : \"Erdemir\",\r\n    \"birthDate\" : \"1977-09-08\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/api/employee/update/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"api",
+						"employee",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
