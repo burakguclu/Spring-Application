@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DtoEmployeeIU {
 	@NotEmpty(message = "Do not leave first name empty!")
-	@Size(max = 50, min = 2)
+	@Size(max = 50, min = 3, message = "Length of first name should be higher than {min} and less than {max}!")
 	private String firstName;
 	
 	@NotEmpty(message = "Do not leave last name empty!")
-	@Size(max = 50, min = 2)
+	@Size(max = 50, min = 3, message = "Length of first name should be higher than {min} and less than {max}!")
 	private String lastName;
 
 	private Date birthDate;
