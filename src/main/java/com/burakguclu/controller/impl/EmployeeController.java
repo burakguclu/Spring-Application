@@ -17,6 +17,8 @@ import com.burakguclu.dto.DtoEmployee;
 import com.burakguclu.dto.DtoEmployeeIU;
 import com.burakguclu.service.IEmployeeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/rest/api/employee")
 public class EmployeeController implements IEmployeeController{
@@ -26,7 +28,7 @@ public class EmployeeController implements IEmployeeController{
 	
 	@PostMapping(path = "/save")
 	@Override
-	public DtoEmployee saveEmployee(@RequestBody DtoEmployeeIU dtoEmployeeIU) {
+	public DtoEmployee saveEmployee(@RequestBody @Valid DtoEmployeeIU dtoEmployeeIU) {
 		return employeeService.saveEmployee(dtoEmployeeIU);
 	}
 
