@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.burakguclu.controller.IEmployeeController;
@@ -32,18 +33,6 @@ public class EmployeeController implements IEmployeeController{
 		return employeeService.saveEmployee(dtoEmployeeIU);
 	}
 
-	@GetMapping(path = "/list")
-	@Override
-	public List<DtoEmployee> getAllEmployees() {
-		return employeeService.getAllEmployees();
-	}
-
-	@GetMapping(path = "/list/{id}")
-	@Override
-	public DtoEmployee getEmployeeByID(@PathVariable(name = "id") Integer id) {
-		return employeeService.getEmployeeByID(id);
-	}
-
 	@DeleteMapping(path = "/delete/{id}")
 	@Override
 	public void deleteEmployee(@PathVariable(name = "id") Integer id) {
@@ -56,7 +45,19 @@ public class EmployeeController implements IEmployeeController{
 		return employeeService.updateEmployee(id, dtoEmployeeIU);
 	}
 
-	@GetMapping(path = "/list/{name}")
+	@GetMapping(path = "/list")
+	@Override
+	public List<DtoEmployee> getAllEmployees() {
+		return employeeService.getAllEmployees();
+	}
+	
+	@GetMapping(path = "/list/id/{id}")
+	@Override
+	public DtoEmployee getEmployeeByID(@PathVariable(name = "id") Integer id) {
+		return employeeService.getEmployeeByID(id);
+	}
+
+	@GetMapping(path = "/list/name/{name}")
 	@Override
 	public DtoEmployee getEmployeeByName(@PathVariable(name = "name") String name) {
 		return employeeService.getEmployeeByName(name);
