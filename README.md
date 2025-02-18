@@ -1,1 +1,1 @@
-Spring üzerine uygulamalar
+Aplications on Spring Boot
