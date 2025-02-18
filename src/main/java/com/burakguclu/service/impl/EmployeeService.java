@@ -86,4 +86,16 @@ public class EmployeeService implements IEmployeeService {
 		return null;
 	}
 
+	@Override
+	public DtoEmployee getEmployeeByName(String name) {
+		DtoEmployee response = new DtoEmployee();
+		
+		Optional<Employee> optional = employeeRepository.findByName(name);
+		if (optional.isPresent()) {
+			Employee tempEmployee = optional.get();
+			BeanUtils.copyProperties(tempEmployee, response);
+			return response;
+		}
+		return null;
+	}
 }

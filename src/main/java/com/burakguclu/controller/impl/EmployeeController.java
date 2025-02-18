@@ -38,7 +38,7 @@ public class EmployeeController implements IEmployeeController{
 		return employeeService.getAllEmployees();
 	}
 
-	@GetMapping(path = "/{id}")
+	@GetMapping(path = "/list/{id}")
 	@Override
 	public DtoEmployee getEmployeeByID(@PathVariable(name = "id") Integer id) {
 		return employeeService.getEmployeeByID(id);
@@ -56,4 +56,10 @@ public class EmployeeController implements IEmployeeController{
 		return employeeService.updateEmployee(id, dtoEmployeeIU);
 	}
 
+	@GetMapping(path = "/list/{name}")
+	@Override
+	public DtoEmployee getEmployeeByName(@PathVariable(name = "name") String name) {
+		return employeeService.getEmployeeByName(name);
+	}
+	
 }
